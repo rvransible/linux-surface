@@ -1,0 +1,17 @@
+---
+# tasks file for linux-surface
+  - include_role:
+      name: apt-role
+    vars:
+      aptPackagesToInstall:
+      - linux-image-surface
+      - linux-headers-surface
+      - iptsd
+      - libwacom-surface
+
+  - name: Enable iptsd service
+    become: True
+    ansible.builtin.systemd:
+      name: iptsd
+      state: started
+      enabled: yes
